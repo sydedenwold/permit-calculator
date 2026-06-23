@@ -1,0 +1,217 @@
+<div style="max-width:650px;margin:auto;font-family:Arial;padding:20px;border:1px solid #ccc;border-radius:12px;">
+  <h2>Residential Building Permit Calculator</h2>
+
+  <!-- Q1 -->
+  <label>1. What are you building?</label>
+  <select id="q1" onchange="updateFlow()">
+    <option value="">Select</option>
+    <option value="a">Single-Family Dwelling</option>
+    <option value="b">Ready-to-Move Home</option>
+    <option value="c">Mobile Home</option>
+    <option value="d">Attached Garage</option>
+    <option value="e">Accessory Building</option>
+    <option value="f">Deck</option>
+    <option value="g">Secondary Suite</option>
+    <option value="h">Farm Building</option>
+    <option value="i">Retaining Wall</option>
+    <option value="j">Addition</option>
+    <option value="k">Basement Development</option>
+    <option value="l">Renovation</option>
+    <option value="m">Foundation Replacement</option>
+    <option value="n">Solar Panels</option>
+  </select>
+
+  <!-- Dynamic Questions -->
+  <div id="questions"></div>
+
+  <button onclick="calculate()" style="margin-top:20px;padding:10px 15px;background:#0078d4;color:white;border:none;border-radius:6px;">
+    Calculate Fee
+  </button>
+
+  <h3 id="result"></h3>
+  <div id="breakdown"></div>
+
+  <p style="font-size:12px;color:gray;">
+    *Estimate only. Final fees determined at permit issuance.
+  </p>
+</div>
+
+<script>
+function updateFlow() {
+  const q1 = document.getElementById("q1").value;
+  let html = "";
+
+  // SINGLE FAMILY
+  if (q1 === "a") {
+    html += `
+      <label>2. Size</label>
+      <select id="q2">
+        <option value="a">Less than 1065</option>
+        <option value="b">1065–2359</option>
+        <option value="c">2360–3649</option>
+        <option value="d">3650–4949</option>
+        <option value="e">4950–6450</option>
+      </select>
+
+      <label>3. Attached garage?</label>
+      <select id="q3">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select>
+
+      <label>4. Municipal water?</label>
+      <select id="q4">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select>
+
+      <label>5. Specific roads?</label>
+      <select id="q5">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select>
+    `;
+  }
+
+  // RTM HOME
+  if (q1 === "b") {
+    html += `
+      <label>2. Size</label>
+      <select id="q2">
+        <option value="a">Less than 1065</option>
+        <option value="b">1065–1499</option>
+        <option value="c">1500–1934</option>
+        <option value="d">1935–2359</option>
+        <option value="e">2360–2789</option>
+        <option value="f">2790–3464</option>
+        <option value="g">3465–3649</option>
+        <option value="h">3650–4950</option>
+      </select>
+
+      <label>3. Attached garage?</label>
+      <select id="q3">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select>
+
+      <label>4. Municipal water?</label>
+      <select id="q4">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select>
+    `;
+  }
+
+  // MOBILE
+  if (q1 === "c") {
+    html += `
+      <label>2. Attached garage?</label>
+      <select id="q2">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select>
+
+      <label>3. In Coppersands?</label>
+      <select id="q3">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select>
+    `;
+  }
+
+  // SIMPLE TYPES
+  if (q1 === "f") {
+    html += `
+      <label>Covered?</label>
+      <select id="q2">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select>
+    `;
+  }
+
+  document.getElementById("questions").innerHTML = html;
+}
+
+function calculate() {
+  let q1 = document.getElementById("q1").value;
+  let fee = 0;
+  let water = 0;
+  let occupancy = 0;
+  let landscaping = 0;
+
+  const val = (id) => document.getElementById(id)?.value;
+
+  // ---------------- SINGLE FAMILY ----------------
+  if (q1 === "a") {
+    let q2 = val("q2"), q3 = val("q3"), q4 = val("q4"), q5 = val("q5");
+
+    const baseTable = {
+      a: { a:1196, b:1104 },
+      b: { a:1748, b:1656 },
+      c: { a:2300, b:2208 },
+      d: { a:2852, b:2760 },
+      e: { a:3404, b:3312 }
+    };
+
+    fee = baseTable[q2][q3];
+
+    occupancy = 2000;
+
+    if (q4 === "a") {
+      water = 220;
+      if (q5 === "a") landscaping = 3000;
+    }
+  }
+
+  // ---------------- RTM ----------------
+  if (q1 === "b") {
+    let q2 = val("q2"), q3 = val("q3"), q4 = val("q4");
+
+    const table = {
+      a:{a:1012,b:920}, b:{a:1196,b:1104}, c:{a:1380,b:1288},
+      d:{a:1564,b:1472}, e:{a:1748,b:1656}, f:{a:1932,b:1840},
+      g:{a:2300,b:2208}, h:{a:2852,b:2760}
+    };
+
+    fee = table[q2][q3];
+    occupancy = 2000;
+    if (q4 === "a") water = 220;
+  }
+
+  // ---------------- MOBILE ----------------
+  if (q1 === "c") {
+    let q2 = val("q2"), q3 = val("q3");
+
+    fee = (q2 === "a") ? 644 : 552;
+
+    if (q3 === "b") occupancy = 2000;
+  }
+
+  // ---------------- SIMPLE TYPES ----------------
+  if (q1 === "f") fee = (val("q2") === "a") ? 368 : 184;
+  if (q1 === "g") fee = 736;
+  if (q1 === "h") fee = 0;
+  if (q1 === "i") fee = 368;
+  if (q1 === "j") fee = 920;
+  if (q1 === "k") fee = 368;
+  if (q1 === "l") fee = 368;
+  if (q1 === "m") fee = 736;
+  if (q1 === "n") fee = 184;
+
+  let total = fee + water + occupancy + landscaping;
+
+  document.getElementById("result").innerText =
+    "Total Estimated Fee: $" + total.toFixed(2);
+
+  let breakdown = `
+    <strong>Breakdown:</strong><br>
+    Permit Fee: $${fee}<br>
+    Water Connection Fee: $${water}<br>
+    Occupancy Deposit: $${occupancy}<br>
+    Landscaping Deposit: $${landscaping}
+  `;
+
+  document.getElementById("breakdown").innerHTML = breakdown;
+}
+</script>
