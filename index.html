@@ -16,9 +16,9 @@
     <option value="i">Retaining Wall</option>
     <option value="j">Addition to House</option>
     <option value="k">Basement Development</option>
-    <option value="l">Home Renovation</option>
-    <option value="m">Foundation Replacement</option>
-    <option value="n">Solar Panels</option>
+    <option value="l">I'm renovating my home</option>
+    <option value="m">I'm replacing my foundation</option>
+    <option value="n">I'm installing solar panels</option>
   </select>
 
   <div id="questions"></div>
@@ -39,32 +39,73 @@
 function updateFlow() {
   const q1 = document.getElementById("q1").value;
   let html = "";
-
-  if (q1 === "d") {
+  
+  // SPECIFIC QUESTIONS
+  // SFD
+if (q1 === "a") {
     html = `
-      <label><strong>2. Will the garage be insulated?</strong></label><br><br>
-      <select id="q2" onchange="updateFlow()" style="width:100%;padding:8px;">
+      <label>2. What will the square footage of the home be including any basement? </label><br><br>
+      <select id="q2">
+        <option value="a">Less than 1065</option>
+        <option value="b">1065–2359</option>
+        <option value="c">2360–3649</option>
+        <option value="d">3650–4949</option>
+        <option value="e">4950–6450</option>
+      </select>
+    
+      <label>3. Are you building an attached garage?</label><br><br>
+      <select id="q3">
         <option value="a">Yes</option>
         <option value="b">No</option>
-      </select><br><br>
+      </select>
 
-      <div id="sub"></div>
-    `;
-  }
-
-  if (q1 === "e") {
-    html = `
-      <label><strong>2. Will the building be insulated?</strong></label><br><br>
-      <select id="q2" onchange="updateFlow()" style="width:100%;padding:8px;">
+      <label>4. Are you connecting to municipal water?</label><br><br>
+      <select id="q4">
         <option value="a">Yes</option>
         <option value="b">No</option>
-      </select><br><br>
+      </select>
 
-      <div id="sub"></div>
+      <label>5. Are you building on Huber Bay, Huber Drive, Fairway Road or Emerald Park Road?</label><br><br>
+      <select id="q5">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select>
     `;
   }
+    // RTM
+  if (q1 === "b") {
+    html = `
+      <label>2. What will the square footage of the home be including any basement? </label><br><br>
+      <select id="q2">
+        <option value="a">Less than 1065</option>
+        <option value="b">1065–2359</option>
+        <option value="c">2360–3649</option>
+        <option value="d">3650–4949</option>
+        <option value="e">4950–6450</option>
+      </select>
+    
+      <label>3. Are you building an attached garage?</label><br><br>
+      <select id="q3">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select>
 
-  if (q1 === "f") {
+      <label>4. Are you connecting to municipal water?</label><br><br>
+      <select id="q4">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select>
+
+      <label>5. Are you building on Huber Bay, Huber Drive, Fairway Road or Emerald Park Road?</label><br><br>
+      <select id="q5">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select>
+    `;
+      }
+
+    // DECK
+ if (q1 === "f") {
     html = `
       <label><strong>2. Will the deck be covered?</strong></label><br><br>
       <select id="q2" style="width:100%;padding:8px;">
@@ -73,63 +114,17 @@ function updateFlow() {
       </select>
     `;
   }
-
   document.getElementById("questions").innerHTML = html;
-
-  // Sub-questions
-  const q2 = document.getElementById("q2")?.value;
-
-  if (q1 === "d" && q2 === "a") {
-    document.getElementById("sub").innerHTML = `
-      <label><strong>3. Will there be any living space within the garage?</strong></label><br><br>
-      <select id="q3" style="width:100%;padding:8px;">
-        <option value="a">Yes</option>
-        <option value="b">No</option>
-      </select>
-    `;
   }
-
-  if (q1 === "e" && q2 === "a") {
-    document.getElementById("sub").innerHTML = `
-      <label><strong>3. Will there be any living space within the building?</strong></label><br><br>
-      <select id="q3" style="width:100%;padding:8px;">
-        <option value="a">Yes</option>
-        <option value="b">No</option>
-      </select>
-    `;
-  }
-}
-
-function calculate() {
+  
+    // CALCULATION
+  function calculate() {
   let q1 = document.getElementById("q1").value;
   const val = (id) => document.getElementById(id)?.value;
-
+    
   let fee = 0, water = 0, occupancy = 0, landscaping = 0;
-
-  // ATTACHED GARAGE
-  if (q1 === "d") {
-    let q2 = val("q2"), q3 = val("q3");
-
-    if (q2 === "a" && q3 === "a") fee = 920;
-    else if (q2 === "a" && q3 === "b") fee = 736;
-    else if (q2 === "b") fee = 460;
-  }
-
-  // ACCESSORY BUILDING
-  if (q1 === "e") {
-    let q2 = val("q2"), q3 = val("q3");
-
-    if (q2 === "a" && q3 === "a") fee = 920;
-    else if (q2 === "a" && q3 === "b") fee = 552;
-    else if (q2 === "b") fee = 276;
-  }
-
-  // DECK
-  if (q1 === "f") {
-    fee = (val("q2") === "a") ? 368 : 184;
-  }
-
-  // SIMPLE TYPES
+  
+      // SIMPLE TYPES
   if (q1 === "g") fee = 736;
   if (q1 === "h") fee = 0;
   if (q1 === "i") fee = 368;
@@ -138,6 +133,12 @@ function calculate() {
   if (q1 === "l") fee = 368;
   if (q1 === "m") fee = 736;
   if (q1 === "n") fee = 184;
+    
+    // DECK
+  const q2 = val("q2");
+if (q2 === "a") fee = 368;
+if (q2 === "b") fee = 184;
+    }
 
   let total = fee + water + occupancy + landscaping;
 
