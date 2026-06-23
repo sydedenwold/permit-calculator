@@ -1,0 +1,155 @@
+<div style="max-width:700px;margin:auto;font-family:Arial;padding:25px;border:1px solid #ccc;border-radius:12px;line-height:1.5;">
+  
+  <h2>Residential Building Permit Fee Calculator</h2>
+
+  <label><strong>1. What are you building?</strong></label><br><br>
+  <select id="q1" onchange="updateFlow()" style="width:100%;padding:8px;margin-bottom:20px;">
+    <option value="">Select a project type</option>
+    <option value="a">Single-Family Dwelling</option>
+    <option value="b">Ready-to-Move Home</option>
+    <option value="c">Mobile Home</option>
+    <option value="d">Attached Garage</option>
+    <option value="e">Accessory Building (Detached Garage, Shop)</option>
+    <option value="f">Deck</option>
+    <option value="g">Secondary Suite</option>
+    <option value="h">Farm Building</option>
+    <option value="i">Retaining Wall</option>
+    <option value="j">Addition to House</option>
+    <option value="k">Basement Development</option>
+    <option value="l">Home Renovation</option>
+    <option value="m">Foundation Replacement</option>
+    <option value="n">Solar Panels</option>
+  </select>
+
+  <div id="questions"></div>
+
+  <button onclick="calculate()" style="margin-top:25px;padding:12px 18px;background:#0078d4;color:white;border:none;border-radius:6px;">
+    Calculate Permit Fee
+  </button>
+
+  <h3 id="result" style="margin-top:25px;"></h3>
+  <div id="breakdown" style="margin-top:10px;"></div>
+
+  <p style="font-size:12px;color:gray;margin-top:20px;">
+    *This tool provides an estimate only. Final fees are determined at the time of permit issuance.
+  </p>
+</div>
+
+<script>
+function updateFlow() {
+  const q1 = document.getElementById("q1").value;
+  let html = "";
+
+  if (q1 === "d") {
+    html = `
+      <label><strong>2. Will the garage be insulated?</strong></label><br><br>
+      <select id="q2" onchange="updateFlow()" style="width:100%;padding:8px;">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select><br><br>
+
+      <div id="sub"></div>
+    `;
+  }
+
+  if (q1 === "e") {
+    html = `
+      <label><strong>2. Will the building be insulated?</strong></label><br><br>
+      <select id="q2" onchange="updateFlow()" style="width:100%;padding:8px;">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select><br><br>
+
+      <div id="sub"></div>
+    `;
+  }
+
+  if (q1 === "f") {
+    html = `
+      <label><strong>2. Will the deck be covered?</strong></label><br><br>
+      <select id="q2" style="width:100%;padding:8px;">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select>
+    `;
+  }
+
+  document.getElementById("questions").innerHTML = html;
+
+  // Sub-questions
+  const q2 = document.getElementById("q2")?.value;
+
+  if (q1 === "d" && q2 === "a") {
+    document.getElementById("sub").innerHTML = `
+      <label><strong>3. Will there be any living space within the garage?</strong></label><br><br>
+      <select id="q3" style="width:100%;padding:8px;">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select>
+    `;
+  }
+
+  if (q1 === "e" && q2 === "a") {
+    document.getElementById("sub").innerHTML = `
+      <label><strong>3. Will there be any living space within the building?</strong></label><br><br>
+      <select id="q3" style="width:100%;padding:8px;">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select>
+    `;
+  }
+}
+
+function calculate() {
+  let q1 = document.getElementById("q1").value;
+  const val = (id) => document.getElementById(id)?.value;
+
+  let fee = 0, water = 0, occupancy = 0, landscaping = 0;
+
+  // ATTACHED GARAGE
+  if (q1 === "d") {
+    let q2 = val("q2"), q3 = val("q3");
+
+    if (q2 === "a" && q3 === "a") fee = 920;
+    else if (q2 === "a" && q3 === "b") fee = 736;
+    else if (q2 === "b") fee = 460;
+  }
+
+  // ACCESSORY BUILDING
+  if (q1 === "e") {
+    let q2 = val("q2"), q3 = val("q3");
+
+    if (q2 === "a" && q3 === "a") fee = 920;
+    else if (q2 === "a" && q3 === "b") fee = 552;
+    else if (q2 === "b") fee = 276;
+  }
+
+  // DECK
+  if (q1 === "f") {
+    fee = (val("q2") === "a") ? 368 : 184;
+  }
+
+  // SIMPLE TYPES
+  if (q1 === "g") fee = 736;
+  if (q1 === "h") fee = 0;
+  if (q1 === "i") fee = 368;
+  if (q1 === "j") fee = 920;
+  if (q1 === "k") fee = 368;
+  if (q1 === "l") fee = 368;
+  if (q1 === "m") fee = 736;
+  if (q1 === "n") fee = 184;
+
+  let total = fee + water + occupancy + landscaping;
+
+  document.getElementById("result").innerText =
+    "Total Estimated Fee: $" + total.toFixed(2);
+
+  document.getElementById("breakdown").innerHTML = `
+    <strong>Fee Breakdown:</strong><br>
+    Permit Fee: $${fee}<br>
+    Water Connection Fee: $${water}<br>
+    Occupancy Deposit: $${occupancy}<br>
+    Landscaping Deposit: $${landscaping}
+  `;
+}
+</script>
