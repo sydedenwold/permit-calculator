@@ -156,7 +156,7 @@ if (q1 === "a") {
   let q1 = document.getElementById("q1").value;
   const val = (id) => document.getElementById(id)?.value;
     
-  let fee = 0, water = 0, occupancy = 0, landscaping = 0;
+  let fee = 0, water = 0, occupancy = 0, landscaping = 0, development = 125;
   
       // SIMPLE TYPES
   if (q1 === "g") fee = 736;
@@ -579,17 +579,28 @@ const q12 = val("q12");
   if (q12 === "a")  {
     fee = 920
      }
-  let total = fee + water + occupancy + landscaping;
+  let total = fee + water + occupancy + landscaping + development;
 
   document.getElementById("result").innerText =
     "Total Estimated Fee: $" + total.toFixed(2);
 
-  document.getElementById("breakdown").innerHTML = `
-    <strong>Fee Breakdown:</strong><br>
-    Permit Fee: $${fee}<br>
-    Water Connection Fee: $${water}<br>
-    Occupancy Deposit: $${occupancy}<br>
-    Landscaping Deposit: $${landscaping}
+let breakdown = `<strong>Fee Breakdown:</strong><br>
+Permit Fee: $${fee}<br>`;
+
+if (water > 0) {
+  breakdown += `Water Connection Fee: $${water}<br>`;
+}
+
+if (occupancy > 0) {
+  breakdown += `Occupancy Deposit: $${occupancy}<br>`;
+}
+
+if (landscaping > 0) {
+  breakdown += `Landscaping Deposit: $${landscaping}<br>`;
+}
+
+document.getElementById("breakdown").innerHTML = breakdown;
+``
   `;
 }
 </script>
