@@ -44,7 +44,7 @@ function updateFlow() {
   // SFD
 if (q1 === "a") {
     html = `
-      <label>2. What will the square footage of the home be including any basement? </label><br><br>
+      <label><strong>2. What will the square footage of the home be including any basement? </label><br><br>
       <select id="q2">
         <option value="a">Less than 1065</option>
         <option value="b">1065–2359</option>
@@ -53,19 +53,19 @@ if (q1 === "a") {
         <option value="e">4950–6450</option>
       </select>
     
-      <label>3. Are you building an attached garage?</label><br><br>
+      <label><strong>3. Does the project include an attached garage?</label><br><br>
       <select id="q3">
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
 
-      <label>4. Are you connecting to municipal water?</label><br><br>
+      <label><strong>4. Are you connecting to municipal water?</label><br><br>
       <select id="q4">
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
 
-      <label>5. Are you building on Huber Bay, Huber Drive, Fairway Road or Emerald Park Road?</label><br><br>
+      <label><strong>5. Are you building on Huber Bay, Huber Drive, Fairway Road or Emerald Park Road?</label><br><br>
       <select id="q5">
         <option value="a">Yes</option>
         <option value="b">No</option>
@@ -75,8 +75,8 @@ if (q1 === "a") {
     // RTM
   if (q1 === "b") {
     html = `
-      <label>2. What will the square footage of the home be including any basement? </label><br><br>
-      <select id="q2">
+      <label><strong>2. What will the square footage of the home be including any basement? </label><br><br>
+      <select id="q6">
         <option value="a">Less than 1065</option>
         <option value="b">1065–2359</option>
         <option value="c">2360–3649</option>
@@ -84,26 +84,64 @@ if (q1 === "a") {
         <option value="e">4950–6450</option>
       </select>
     
-      <label>3. Are you building an attached garage?</label><br><br>
-      <select id="q3">
+      <label><strong>3. Does the project include an attached garage?</label><br><br>
+      <select id="q7">
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
 
-      <label>4. Are you connecting to municipal water?</label><br><br>
-      <select id="q4">
+      <label><strong>4. Are you connecting to municipal water?</label><br><br>
+      <select id="q8">
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
 
-      <label>5. Are you building on Huber Bay, Huber Drive, Fairway Road or Emerald Park Road?</label><br><br>
-      <select id="q5">
+      <label><strong>5. Are you building on Huber Bay, Huber Drive, Fairway Road or Emerald Park Road?</label><br><br>
+      <select id="q9">
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
     `;
       }
 
+    // MOBILE HOME
+    if (q1 === "c") {
+    html = `
+      <label><strong>2. Does the project include an attached garage?</label><br><br>
+      <select id="q10">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select>
+
+        <label><strong>3. Are you placing the Mobile Home within Coppersands Mobile Home Park?</label><br><br>
+      <select id="q9">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select>
+    `;
+      }
+
+  // ACCESSORY BUILDING & ATTACHED GARAGE
+   if (q1 === "d") || q1 === "e") {
+   html = `
+      <label><strong>2. Will the buiding be insulated?</label><br><br>
+      <select id="q11">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select>
+        `;
+  }
+  
+    if (q1 === "d") || q1 === "e" && q11 == a) 
+   html = `
+      <label><strong>2. Will the buidling contain living space?</label><br><br>
+      <select id="q11">
+        <option value="a">Yes</option>
+        <option value="b">No</option>
+      </select>
+        `;
+  }
+  
     // DECK
  if (q1 === "f") {
     html = `
@@ -135,7 +173,7 @@ if (q1 === "a") {
   if (q1 === "n") fee = 184;
     
     // DECK
-  const q2 = val("q2");
+const q2 = val("q2");
 if (q2 === "a") fee = 368;
 if (q2 === "b") fee = 184;
     }
