@@ -584,23 +584,21 @@ const q12 = val("q12");
   document.getElementById("result").innerText =
     "Total Estimated Fee: $" + total.toFixed(2);
 
-let breakdown = `<strong>Fee Breakdown:</strong><br>
-Permit Fee: $${fee}<br>`;
+let breakdown = "<strong>Fee Breakdown:</strong><br>";
+breakdown += "Permit Fee: $" + fee + "<br>";
 
 if (water > 0) {
-  breakdown += `Water Connection Fee: $${water}<br>`;
+  breakdown += "Water Connection Fee: $" + water + "<br>";
 }
 
 if (occupancy > 0) {
-  breakdown += `Occupancy Deposit: $${occupancy}<br>`;
+  breakdown += "Occupancy Deposit: $" + occupancy + "<br>";
 }
 
 if (landscaping > 0) {
-  breakdown += `Landscaping Deposit: $${landscaping}<br>`;
+  breakdown += "Landscaping Deposit: $" + landscaping + "<br>";
 }
 
 document.getElementById("breakdown").innerHTML = breakdown;
-``
-  `;
-}
+  }
 </script>
