@@ -64,7 +64,12 @@ if (q1 === "a") {
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
+      `;
+  }
+const q4 = document.getElementById("q4")?.value;
 
+  if ( q4 === "a") {
+    html += `
       <label><strong>5. Are you building on Huber Bay, Huber Drive, Fairway Road or Emerald Park Road?</label><br><br>
       <select id="q5">
         <option value="a">Yes</option>
@@ -72,16 +77,20 @@ if (q1 === "a") {
       </select>
     `;
   }
+  
     // RTM
   if (q1 === "b") {
     html = `
       <label><strong>2. What will the square footage of the home be including any basement? </label><br><br>
       <select id="q6">
         <option value="a">Less than 1065</option>
-        <option value="b">1065–2359</option>
-        <option value="c">2360–3649</option>
-        <option value="d">3650–4949</option>
-        <option value="e">4950–6450</option>
+        <option value="b">1065–1499</option>
+        <option value="c">1500–1934</option>
+        <option value="d">1935–2359</option>
+        <option value="e">2360–2789</option>
+        <option value="f">2790-2464</option>
+        <option value="g">2790-3649</option>
+        <option value="h">3650-4950</option>
       </select>
     
       <label><strong>3. Does the project include an attached garage?</label><br><br>
@@ -95,12 +104,7 @@ if (q1 === "a") {
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
-
-      <label><strong>5. Are you building on Huber Bay, Huber Drive, Fairway Road or Emerald Park Road?</label><br><br>
-      <select id="q9">
-        <option value="a">Yes</option>
-        <option value="b">No</option>
-      </select>
+      
     `;
       }
 
@@ -108,20 +112,20 @@ if (q1 === "a") {
     if (q1 === "c") {
     html = `
       <label><strong>2. Does the project include an attached garage?</label><br><br>
-      <select id="q10">
+      <select id="q9">
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
 
         <label><strong>3. Are you placing the Mobile Home within Coppersands Mobile Home Park?</label><br><br>
-      <select id="q9">
+      <select id="q10">
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
     `;
       }
 
-  // ACCESSORY BUILDING & ATTACHED GARAGE
+  // ACCESSORY / GARAGE
    if (q1 === "d") || q1 === "e") {
    html = `
       <label><strong>2. Will the buiding be insulated?</label><br><br>
@@ -132,21 +136,23 @@ if (q1 === "a") {
         `;
   }
   
-    if (q1 === "d") || q1 === "e" && q11 == a) 
-   html = `
-      <label><strong>2. Will the buidling contain living space?</label><br><br>
-      <select id="q11">
+const q11 = document.getElementById("q11")?.value;
+
+  if ((q1 === "d" || q1 === "e") && q11 === "a") {
+    html += `
+      <label><strong>3. Will the building contain living space?</strong></label><br><br>
+      <select id="q12">
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
-        `;
+    `;
   }
   
     // DECK
  if (q1 === "f") {
     html = `
       <label><strong>2. Will the deck be covered?</strong></label><br><br>
-      <select id="q2" style="width:100%;padding:8px;">
+      <select id="q13" style="width:100%;padding:8px;">
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
@@ -173,11 +179,416 @@ if (q1 === "a") {
   if (q1 === "n") fee = 184;
     
     // DECK
-const q2 = val("q2");
-if (q2 === "a") fee = 368;
-if (q2 === "b") fee = 184;
-    }
+const q13 = val("q13"); {
+if (q13 === "a") fee = 368;
+if (q13 === "b") fee = 184;
+}
 
+    // SFD
+const q2 = val("q2");
+const q3 = val("q3");
+const q4 = val("q4");
+const q5 = val("q5");
+    // SMALL FS GARAGE
+if (q2 === "a" && q3 === "a" && q4 === "a" && q5 === "a") {
+  fee = 1196;
+  water = 220;
+  occupancy = 2000;
+  landscaping = 3000;
+  }
+     // SMALL FS NO GARAGE
+if (q2 === "a" && q3 === "b" && q4 === "a" && q5 === "a") {
+  fee = 1104;
+  water = 220;
+  occupancy = 2000;
+  landscaping = 3000;
+}
+    // SMALL WATER GARAGE
+if (q2 === "a" && q3 === "a" && q4 === "a" && q5 === "b") {
+  fee = 1196;
+  water = 220;
+  occupancy = 2000;
+}
+    // SMALL WATER NO GARAGE
+if (q2 === "a" && q3 === "b" && q4 === "a" && q5 === "b") {
+  fee = 1104;
+  water = 220;
+  occupancy = 2000;
+}
+    // SMALL GARAGE
+if (q2 === "a" && q3 === "a" && q4 === "b") {
+  fee = 1196;
+  occupancy = 2000;
+}
+      // SMALL NO GARAGE
+if (q2 === "a" && q3 === "b" && q4 === "b") {
+  fee = 1104;
+  occupancy = 2000;
+}
+    // FS SIZE 2 
+if (q2 === "b" && q3 === "a" && q4 === "a" && q5 === "a") {
+  fee = 1748;
+  water = 220;
+  occupancy = 2000; 
+  landscaping = 3000;
+  }
+    // FS SIZE 2 NO GARAGE 
+if (q2 === "b" && q3 === "b" && q4 === "a" && q5 === "a") {
+  fee = 1656;
+  water = 220;
+  occupancy = 2000; 
+  landscaping = 3000;
+  }
+    // SIZE 2 WATER GARAGE
+if (q2 === "b" && q3 === "a" && q4 === "a" && q5 === "b") {
+  fee = 1748;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 2 WATER NO GARAGE
+if (q2 === "b" && q3 === "b" && q4 === "a" && q5 === "b") {
+  fee = 1656;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 2 GARAGE
+if (q2 === "b" && q3 === "a" && q4 === "b") {
+  fee = 1748;
+  occupancy = 2000;
+}
+      // SIZE 2 NO GARAGE
+if (q2 === "b" && q3 === "b" && q4 === "b") {
+  fee = 1656;
+  occupancy = 2000;
+}
+    // FS SIZE 3 
+if (q2 === "c" && q3 === "a" && q4 === "a" && q5 === "a") {
+  fee = 2300;
+  water = 220;
+  occupancy = 2000; 
+  landscaping = 3000;
+  }
+    // FS SIZE 3 NO GARAGE 
+if (q2 === "c" && q3 === "b" && q4 === "a" && q5 === "a") {
+  fee = 2208;
+  water = 220;
+  occupancy = 2000; 
+  landscaping = 3000;
+  }
+    // SIZE 3 WATER GARAGE
+if (q2 === "c" && q3 === "a" && q4 === "a" && q5 === "b") {
+  fee = 2300;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 3 WATER NO GARAGE
+if (q2 === "c" && q3 === "b" && q4 === "a" && q5 === "b") {
+  fee = 2208;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 3 GARAGE
+if (q2 === "c" && q3 === "a" && q4 === "b") {
+  fee = 2300;
+  occupancy = 2000;
+}
+      // SIZE 3 NO GARAGE
+if (q2 === "c" && q3 === "b" && q4 === "b") {
+  fee = 2208;
+  occupancy = 2000;
+}
+    // FS SIZE 4 
+if (q2 === "d" && q3 === "a" && q4 === "a" && q5 === "a") {
+  fee = 2882;
+  water = 220;
+  occupancy = 2000; 
+  landscaping = 3000;
+  }
+    // FS SIZE 4 NO GARAGE 
+if (q2 === "d" && q3 === "b" && q4 === "a" && q5 === "a") {
+  fee = 2760;
+  water = 220;
+  occupancy = 2000; 
+  landscaping = 3000;
+  }
+    // SIZE 4 WATER GARAGE
+if (q2 === "d" && q3 === "a" && q4 === "a" && q5 === "b") {
+  fee = 2852;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 4 WATER NO GARAGE
+if (q2 === "d" && q3 === "b" && q4 === "a" && q5 === "b") {
+  fee = 2760;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 4 GARAGE
+if (q2 === "d" && q3 === "a" && q4 === "b") {
+  fee = 2852;
+  occupancy = 2000;
+}
+      // SIZE 4 NO GARAGE
+if (q2 === "d" && q3 === "b" && q4 === "b") {
+  fee = 2760;
+  occupancy = 2000;
+}
+        // FS SIZE 5 
+if (q2 === "e" && q3 === "a" && q4 === "a" && q5 === "a") {
+  fee = 3404;
+  water = 220;
+  occupancy = 2000; 
+  landscaping = 3000;
+  }
+    // FS SIZE 5 NO GARAGE 
+if (q2 === "e" && q3 === "b" && q4 === "a" && q5 === "a") {
+  fee = 3312;
+  water = 220;
+  occupancy = 2000; 
+  landscaping = 3000;
+  }
+    // SIZE 5 WATER GARAGE
+if (q2 === "e" && q3 === "a" && q4 === "a" && q5 === "b") {
+  fee = 3404;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 5 WATER NO GARAGE
+if (q2 === "e" && q3 === "b" && q4 === "a" && q5 === "b") {
+  fee = 3312;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 5 GARAGE
+if (q2 === "e" && q3 === "a" && q4 === "b") {
+  fee = 3404;
+  occupancy = 2000;
+}
+      // SIZE 5 NO GARAGE
+if (q2 === "e" && q3 === "b" && q4 === "b") {
+  fee = 3312;
+  occupancy = 2000;
+}
+    
+    // RTM
+const q6 = val("q6");
+const q7 = val("q7");
+const q8 = val("q8");
+    
+    // SIZE 1 WATER GARAGE
+if (q6 === "a" && q7 === "a" && q8 === "a") {
+  fee = 1012;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 1 WATER NO GARAGE
+if (q6 === "a" && q7 === "b" && q8 === "a") {
+  fee = 920;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 1 GARAGE
+if (q6 === "a" && q7 === "a" && q8 === "b") {
+  fee = 1012;
+  occupancy = 2000;
+}
+      // SIZE 1 NO GARAGE
+if (q6 === "a" && q7 === "b" && q8 === "b") {
+  fee = 920;
+  occupancy = 2000;
+}
+    // SIZE 2 WATER GARAGE
+if (q6 === "b" && q7 === "a" && q8 === "a") {
+  fee = 1196;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 2 WATER NO GARAGE
+if (q6 === "b" && q7 === "b" && q8 === "a") {
+  fee = 1104;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 2 GARAGE
+if (q6 === "b" && q7 === "a" && q8 === "b") {
+  fee = 1196;
+  occupancy = 2000;
+}
+      // SIZE 2 NO GARAGE
+if (q6 === "b" && q7 === "b" && q8 === "b") {
+  fee = 1104;
+  occupancy = 2000;
+}
+    // SIZE 3 WATER GARAGE
+if (q6 === "c" && q7 === "a" && q8 === "a") {
+  fee = 1380;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 3 WATER NO GARAGE
+if (q6 === "c" && q7 === "b" && q8 === "a") {
+  fee = 1288;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 3 GARAGE
+if (q6 === "c" && q7 === "a" && q8 === "b") {
+  fee = 1380;
+  occupancy = 2000;
+}
+      // SIZE 3 NO GARAGE
+if (q6 === "c" && q7 === "b" && q8 === "b") {
+  fee = 1288;
+  occupancy = 2000;
+}
+    // SIZE 4 WATER GARAGE
+if (q6 === "d" && q7 === "a" && q8 === "a") {
+  fee = 1564;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 1 WATER NO GARAGE
+if (q6 === "d" && q7 === "b" && q8 === "a") {
+  fee = 1472;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 4 GARAGE
+if (q6 === "d" && q7 === "a" && q8 === "b") {
+  fee = 1564;
+  occupancy = 2000;
+}
+      // SIZE 4 NO GARAGE
+if (q6 === "d" && q7 === "b" && q8 === "b") {
+  fee = 1472;
+  occupancy = 2000;
+}
+      // SIZE 5 WATER GARAGE
+if (q6 === "e" && q7 === "a" && q8 === "a") {
+  fee = 1748;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 5 WATER NO GARAGE
+if (q6 === "e" && q7 === "b" && q8 === "a") {
+  fee = 1656;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 5 GARAGE
+if (q6 === "e" && q7 === "a" && q8 === "b") {
+  fee = 1748;
+  occupancy = 2000;
+}
+      // SIZE 5 NO GARAGE
+if (q6 === "e" && q7 === "b" && q8 === "b") {
+  fee = 1656;
+  occupancy = 2000;
+}
+      // SIZE 6 WATER GARAGE
+if (q6 === "f" && q7 === "a" && q8 === "a") {
+  fee = 1932;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 6 WATER NO GARAGE
+if (q6 === "f" && q7 === "b" && q8 === "a") {
+  fee = 1840;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 6 GARAGE
+if (q6 === "f" && q7 === "a" && q8 === "b") {
+  fee = 1932;
+  occupancy = 2000;
+}
+      // SIZE 6 NO GARAGE
+if (q6 === "f" && q7 === "b" && q8 === "b") {
+  fee = 1840;
+  occupancy = 2000;
+}
+          // SIZE 7 WATER GARAGE
+if (q6 === "g" && q7 === "a" && q8 === "a") {
+  fee = 2300;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 7 WATER NO GARAGE
+if (q6 === "g" && q7 === "b" && q8 === "a") {
+  fee = 2208;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 7 GARAGE
+if (q6 === "g" && q7 === "a" && q8 === "b") {
+  fee = 2300;
+  occupancy = 2000;
+}
+      // SIZE 8 NO GARAGE
+if (q6 === "g" && q7 === "b" && q8 === "b") {
+  fee = 2208;
+  occupancy = 2000;
+}
+     // SIZE 8 WATER GARAGE
+if (q6 === "h" && q7 === "a" && q8 === "a") {
+  fee = 2852;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 7 WATER NO GARAGE
+if (q6 === "h" && q7 === "b" && q8 === "a") {
+  fee = 2760;
+  water = 220;
+  occupancy = 2000;
+}
+    // SIZE 8 GARAGE
+if (q6 === "h" && q7 === "a" && q8 === "b") {
+  fee = 2852;
+  occupancy = 2000;
+}
+      // SIZE 8 NO GARAGE
+if (q6 === "h" && q7 === "b" && q8 === "b") {
+  fee = 2760;
+  occupancy = 2000;
+}
+
+    // MOBILE
+const q9 = val("q9");
+const q10 = val("q10");
+    
+if (q9 === "a" && q10 === "b") {
+  fee = 644;
+  occupancy = 2000;
+  }
+if (q9 === "a" && q10 === "a") {
+  fee = 644;
+  }
+if (q9 === "b" && q10 === "b") {
+  fee = 552;
+  occupancy = 2000;
+  }
+if (q9 === "b" && q10 === "a") {
+  fee = 552;
+  }
+    
+    // ACCESSORY
+const q11 = val("q11");
+const q12 = val("q12");
+ if (q1 === "d" && q11 === "a") && (q12 === "b"){
+   fee = 736
+ }
+  if (q1 === "d" && q11 === "b") {
+   fee = 460
+ }
+  if (q1 === "e" && q11 === "a") && (q12 === "b"){
+   fee = 552
+ }
+  if (q1 === "e" && q11 === "b") {
+   fee = 276
+ }
+  if (q12 === "a")  {
+    fee = 920
+     }
   let total = fee + water + occupancy + landscaping;
 
   document.getElementById("result").innerText =
