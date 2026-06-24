@@ -44,8 +44,8 @@ function updateFlow() {
   // SFD
 if (q1 === "a") {
     html = `
-      <label><strong>2. What will the square footage of the home be including any basement?</strong></label><br><br>
-      <select id="q2">
+      <label><strong>2. What will the square footage of the home be including any basement?</strong></label><br>
+      <select id="q2" style="margin-bottom:15px;"> 
         <option value="a">Less than 1065</option>
         <option value="b">1065–2359</option>
         <option value="c">2360–3649</option>
@@ -53,25 +53,26 @@ if (q1 === "a") {
         <option value="e">4950–6450</option>
       </select>
     
-      <label><strong>3. Does the project include an attached garage?</strong></label><br><br>
-      <select id="q3">
+      <label><strong>3. Does the project include an attached garage?</strong></label><br>
+      <select id="q3" style="margin-bottom:15px;">
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
 
-      <label><strong>4. Are you connecting to municipal water?</strong></label><br><br>
-      <select id="q4" onchange="updateFlow()">
+      <label><strong>4. Are you connecting to municipal water?</strong></label><br>
+      <select id="q4" onchange="updateFlow()" style="margin-bottom:15px;">
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
       `;
   }
-const q4 = document.getElementById("q4")?.value;
+const q4 = document.getElementById("q4") ? document.getElementById("q4").value : null;
+
 
   if (q1 === "a" && q4 === "a"){
     html += `
-      <label><strong>5. Are you building on Huber Bay, Huber Drive, Fairway Road or Emerald Park Road?</strong></label><br><br>
-      <select id="q5">
+      <label><strong>5. Are you building on Huber Bay, Huber Drive, Fairway Road or Emerald Park Road?</strong></label><br>
+      <select id="q5" style="margin-bottom:15px;">
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
@@ -81,8 +82,8 @@ const q4 = document.getElementById("q4")?.value;
     // RTM
   if (q1 === "b") {
     html = `
-      <label><strong>2. What will the square footage of the home be including any basement?</strong></label><br><br>
-      <select id="q6">
+      <label><strong>2. What will the square footage of the home be including any basement?</strong></label><br>
+      <select id="q6" style="margin-bottom:15px;">
         <option value="a">Less than 1065</option>
         <option value="b">1065–1499</option>
         <option value="c">1500–1934</option>
@@ -93,14 +94,14 @@ const q4 = document.getElementById("q4")?.value;
         <option value="h">3650-4950</option>
       </select>
     
-      <label><strong>3. Does the project include an attached garage?</strong></label><br><br>
-      <select id="q7">
+      <label><strong>3. Does the project include an attached garage?</strong></label><br>
+      <select id="q7" style="margin-bottom:15px;">
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
 
-      <label><strong>4. Are you connecting to municipal water?</strong></label><br><br>
-      <select id="q8">
+      <label><strong>4. Are you connecting to municipal water?</strong></label><br>
+      <select id="q8" style="margin-bottom:15px;">
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
@@ -111,14 +112,14 @@ const q4 = document.getElementById("q4")?.value;
     // MOBILE HOME
     if (q1 === "c") {
     html = `
-      <label><strong>2. Does the project include an attached garage?</strong></label><br><br>
-      <select id="q9">
+      <label><strong>2. Does the project include an attached garage?</strong></label><br>
+      <select id="q9" style="margin-bottom:15px;">
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
 
-        <label><strong>3. Are you placing the Mobile Home within Coppersands Mobile Home Park?</strong></label><br><br>
-      <select id="q10">
+        <label><strong>3. Are you placing the Mobile Home within Coppersands Mobile Home Park?</strong></label><br>
+      <select id="q10" style="margin-bottom:15px;">
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
@@ -128,20 +129,20 @@ const q4 = document.getElementById("q4")?.value;
   // ACCESSORY / GARAGE
    if (q1 === "d" || q1 === "e") {
    html = `
-      <label><strong>2. Will the buiding be insulated?</strong></label><br><br>
-      <select id="q11" onchange="updateFlow()">
+      <label><strong>2. Will the buiding be insulated?</strong></label><br>
+      <select id="q11" onchange="updateFlow()" style="margin-bottom:15px;">
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
         `;
   }
   
-const q11 = document.getElementById("q11")?.value;
+const q11 = document.getElementById("q11") ? document.getElementById("q11").value : null;
 
   if ((q1 === "d" || q1 === "e") && q11 === "a") {
     html += `
-      <label><strong>3. Will the building contain living space?</strong></label><br><br>
-      <select id="q12">
+      <label><strong>3. Will the building contain living space?</strong></label><br>
+      <select id="q12" style="margin-bottom:15px;">
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
@@ -151,8 +152,8 @@ const q11 = document.getElementById("q11")?.value;
     // DECK
  if (q1 === "f") {
     html = `
-      <label><strong>2. Will the deck be covered?</strong></label><br><br>
-      <select id="q13" style="width:100%;padding:8px;">
+      <label><strong>2. Will the deck be covered?</strong></label><br>
+      <select id="q13" style="margin-bottom:15px;">
         <option value="a">Yes</option>
         <option value="b">No</option>
       </select>
